@@ -9,7 +9,7 @@ const TabBar = ({ navigation, state }) => {
 
   // Change color of active tab
   const renderColor = (currentTab) => {
-    return currentTab == selected ? "green" : "black";
+    return currentTab == selected ? "#22a7f0" : "black";
   };
 
   // switch to another page on tab press
@@ -50,11 +50,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    backgroundColor: "white",
-    width: "60%",
+    backgroundColor: "#d7e1ee",
+    width: "80%",
     justifyContent: "space-between",
     borderRadius: 100,
-    elevation:2
+    elevation: 4,
+    shadowColor: "blue",
   },
 });
 
