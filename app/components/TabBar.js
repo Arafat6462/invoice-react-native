@@ -4,7 +4,7 @@ import Tab from "./Tab";
 const { width } = Dimensions.get("screen");
 
 const TabBar = ({ navigation, state }) => {
-  const [selected, setSelected] = useState("Create");
+  const [selected, setSelected] = useState("Home");
   const { routes } = state;
 
   // Change color of active tab

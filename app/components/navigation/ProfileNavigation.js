@@ -7,7 +7,7 @@ import Test from "../Test";
 const Stack = createStackNavigator();
 const ProfileNavigation = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerTransparent: true,   }}>
+    <Stack.Navigator screenOptions={{ headerTransparent: true, title: "" }}>
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Test" component={Test} />
     </Stack.Navigator>

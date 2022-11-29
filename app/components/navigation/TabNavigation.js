@@ -25,6 +25,7 @@ const TabNavigation = () => {
         name="Profile"
         component={ProfileNavigation}
         initialParams={{ icon: "user" }}
+        options={{ headerShown: false }}
       />
     </Tab.Navigator>
   );
