@@ -1,14 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-const Profile = ({ navigation }) => {
+const Test = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
-      <Button
-        onPress={() => navigation.navigate("Test")}
-        title="Move to another screen"
-      />
+      <Text style={styles.text}>Test</Text>
     </View>
   );
 };
@@ -27,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default Test;

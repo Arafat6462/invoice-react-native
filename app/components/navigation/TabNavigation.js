@@ -4,6 +4,7 @@ import Home from "../Home";
 import Create from "../Create";
 import Profile from "../Profile";
 import TabBar from "../TabBar";
+import ProfileNavigation from "./ProfileNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileNavigation}
         initialParams={{ icon: "user" }}
       />
     </Tab.Navigator>
