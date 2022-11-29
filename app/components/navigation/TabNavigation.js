@@ -1,16 +1,30 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../Home";
-import Create from "./Create";
+import Create from "../Create";
 import Profile from "../Profile";
+import TabBar from "../TabBar";
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Create" component={Create} />
-      <Tab.Screen name="Profile" component={Profile} />
+    <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        initialParams={{ icon: "home" }}
+      />
+      <Tab.Screen
+        name="Create"
+        component={Create}
+        initialParams={{ icon: "plus" }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        initialParams={{ icon: "user" }}
+      />
     </Tab.Navigator>
   );
 };
