@@ -1,10 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../Home";
 import Create from "../Create";
-import Profile from "../Profile";
 import TabBar from "../TabBar";
 import ProfileNavigation from "./ProfileNavigation";
+import Show from "../Show";
+import Profile from "../Profile";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,9 +12,9 @@ const TabNavigation = () => {
   return (
     <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen
-        name="Home"
-        component={Home}
-        initialParams={{ icon: "home" }}
+        name="Show"
+        component={ProfileNavigation}
+        initialParams={{ icon: "appstore-o" }}
       />
       <Tab.Screen
         name="Create"
@@ -23,7 +23,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileNavigation}
+        component={Profile}
         initialParams={{ icon: "user" }}
         options={{ headerShown: false }}
       />
