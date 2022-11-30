@@ -10,19 +10,22 @@ const Create = ({ navigation }) => {
   };
 
   console.log(inputs);
+  console.log("and name is : " + inputs.name);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.textCreate}>Create</Text>
         <View style={{ marginVertical: 20 }}>
+          {/* all design value goes to InputItem through props and apply inside input field */}
           <InputItem
             label="Date"
             placeholder="2022-10-27"
             onChangeText={(text) => handleOnChange(text, "date")}
-          />
+          /> 
           <InputItem
             label="Invoice No"
             placeholder="6"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "invoice_no")}
           />
           <InputItem
@@ -42,12 +45,14 @@ const Create = ({ navigation }) => {
           />
           <InputItem
             label="Mobile"
+            keyboardType="numeric"
             placeholder="0177776666555"
             onChangeText={(text) => handleOnChange(text, "mobile")}
           />
           <InputItem
             label="QTY"
             placeholder="3"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "qty")}
           />
           <InputItem
@@ -58,11 +63,13 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Product Price"
             placeholder="1020"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "product_price")}
           />
           <InputItem
             label="Advance"
             placeholder="500"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "advance")}
           />
           <InputItem
@@ -73,6 +80,7 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Delivery Charge"
             placeholder="75"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "delivery_charge")}
           />
           <InputItem
@@ -103,16 +111,19 @@ const Create = ({ navigation }) => {
           <InputItem
             label="bKash Cost"
             placeholder="20"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "bkash_cost")}
           />
           <InputItem
             label="Others (VAT, TAX, etc.)"
             placeholder="10"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "other")}
           />
           <InputItem
             label="Deposit to Accounts"
             placeholder="800"
+            keyboardType="numeric"
             onChangeText={(text) => handleOnChange(text, "deposit_to_account")}
           />
           <Btn title="Create" onPress={() => navigation.navigate("Show")} />
