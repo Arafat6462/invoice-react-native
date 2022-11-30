@@ -3,7 +3,11 @@ import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
 const Btn = ({ title, onPress = () => {} }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.btnPress}>
+    <TouchableOpacity
+      activeOpacity={0.5}
+      onPress={onPress}
+      style={styles.btnPress}
+    >
       <Text style={styles.btnText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -13,11 +17,12 @@ const styles = StyleSheet.create({
   btnPress: {
     height: 55,
     width: "100%",
-    backgroundColor: "blue",
+    backgroundColor: "#0000ff",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
     marginVertical: 20,
+    marginBottom: 100,
   },
   btnText: {
     color: "#fff",
