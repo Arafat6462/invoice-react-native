@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 const ProfileNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerTransparent: true, title: "" }}>
-      <Stack.Screen name="Show" component={Show} />
+      <Stack.Screen name="Show Item" component={Show} />
       <Stack.Screen name="Update" component={Update} />
     </Stack.Navigator>
   );

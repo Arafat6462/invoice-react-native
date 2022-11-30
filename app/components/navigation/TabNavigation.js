@@ -20,6 +20,7 @@ const TabNavigation = () => {
         name="Create"
         component={Create}
         initialParams={{ icon: "plus" }}
+        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Profile"
