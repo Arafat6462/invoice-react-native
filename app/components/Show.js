@@ -500,7 +500,7 @@ const Show = ({ navigation }) => {
     <View style={styles.container}>
       <ScrollView horizontal={true}>
         <ScrollView vertical={true}>
-          <Table borderStyle={{ borderColor: "transparent" }}>
+          <Table borderStyle={{ borderColor: "blue", borderWidth: 0.5 }}>
             <Row data={tableHead} style={styles.head} textStyle={styles.text} />
             {tableData.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
