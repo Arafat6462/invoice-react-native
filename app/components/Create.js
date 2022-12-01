@@ -10,7 +10,7 @@ const Create = ({ navigation }) => {
   };
 
   console.log(inputs);
-  console.log("and name is : " + inputs.name);
+  // console.log("and name is : " + inputs.name);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>

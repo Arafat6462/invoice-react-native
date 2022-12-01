@@ -650,8 +650,8 @@ const Show = ({ navigation }) => {
   const element = (data, index) => (
     <TouchableOpacity onPress={() => alertIndex(index)}>
       <View style={styles.btn}>
-        <Text style={styles.btnText}>button</Text>
-        {/* <Text style={styles.btnText}>button2</Text> */}
+        <Text style={styles.btnTextDelete}>Delete</Text>
+        <Text style={styles.btnTextUpdate}>Update</Text>
       </View>
     </TouchableOpacity>
   );
@@ -713,12 +713,16 @@ const styles = StyleSheet.create({
   text: { margin: 6, textAlign: "center" },
   row: { flexDirection: "row", backgroundColor: "#F0F1C1" },
   btn: {
-    // flex: 1,
-    width: 58,
-    height: 18,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    // marginLeft: 20,
+    // width: 58,
+    // height: 18,
     backgroundColor: "#78B7BB",
     borderRadius: 2,
   },
-  btnText: { textAlign: "center", color: "#fff" },
+  btnTextDelete: { textAlign: "center", color: "#f44" },
+  btnTextUpdate: { textAlign: "center", color: "#4fa" },
 });
 export default Show;
