@@ -41,7 +41,166 @@ const Show = ({ navigation }) => {
     "Deposit to Accounts",
     "Action",
   ]);
+
+  const [widthArr, setWidthArr] = useState([
+    140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140,
+    140, 140, 140, 140, 140,
+  ]);
   const [tableData, setTableData] = useState([
+    [
+      "2022 ",
+      "6",
+      "Arafat  ",
+      "Gulshan-1",
+      "arafat6462@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
+    [
+      "2022-10-27",
+      "6Gulshan-1, DhakaGulshan-1, Dhaka",
+      "Arafat hossain",
+      "Gulshan-1, Dhaka",
+      "abc@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
+    [
+      "2022-10-27",
+      "6",
+      "Arafat hossain",
+      "Gulshan-1, Dhaka",
+      "abc@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
+    [
+      "2022-10-27",
+      "6",
+      "Arafat hossain",
+      "Gulshan-1, Dhaka",
+      "abc@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
+    [
+      "2022-10-27",
+      "6",
+      "Arafat hossain",
+      "Gulshan-1, Dhaka",
+      "abc@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
+    [
+      "2022-10-27",
+      "6",
+      "Arafat hossain",
+      "Gulshan-1, Dhaka",
+      "abc@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
+    [
+      "2022-10-27",
+      "6",
+      "Arafat hossain",
+      "Gulshan-1, Dhaka",
+      "abc@gmail.com",
+      "0177776666555",
+      "3",
+      "Head Phone",
+      "1020",
+      "500",
+      "Delivered",
+      "75",
+      "RedX",
+      "Nothing",
+      "Processing",
+      "N/A",
+      "N/A",
+      "20",
+      "10",
+      "800",
+    ],
     [
       "2022-10-27",
       "6",
@@ -492,6 +651,7 @@ const Show = ({ navigation }) => {
     <TouchableOpacity onPress={() => alertIndex(index)}>
       <View style={styles.btn}>
         <Text style={styles.btnText}>button</Text>
+        {/* <Text style={styles.btnText}>button2</Text> */}
       </View>
     </TouchableOpacity>
   );
@@ -501,11 +661,17 @@ const Show = ({ navigation }) => {
       <ScrollView horizontal={true}>
         <ScrollView vertical={true}>
           <Table borderStyle={{ borderColor: "blue", borderWidth: 0.5 }}>
-            <Row data={tableHead} style={styles.head} textStyle={styles.text} />
+            <Row
+              data={tableHead}
+              width={140}
+              style={styles.head}
+              textStyle={styles.text}
+            />
             {tableData.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
                 {rowData.map((cellData, cellIndex) => (
                   <Cell
+                    width={140}
                     key={cellIndex}
                     data={
                       cellIndex === 19 ? element(cellData, index) : cellData
@@ -543,10 +709,16 @@ const Show = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
-  head: { height: 40, backgroundColor: "#808B97" },
-  text: { margin: 6 },
+  head: { height: 60, backgroundColor: "#808B97" },
+  text: { margin: 6, textAlign: "center" },
   row: { flexDirection: "row", backgroundColor: "#F0F1C1" },
-  btn: { width: 58, height: 18, backgroundColor: "#78B7BB", borderRadius: 2 },
+  btn: {
+    // flex: 1,
+    width: 58,
+    height: 18,
+    backgroundColor: "#78B7BB",
+    borderRadius: 2,
+  },
   btnText: { textAlign: "center", color: "#fff" },
 });
 export default Show;
