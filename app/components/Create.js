@@ -5,7 +5,6 @@ import Btn from "./Btn";
 import InputItem from "./InputItem";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "./config";
-import { ScreenStackHeaderBackButtonImage } from "react-native-screens";
 
 const Create = ({ navigation }) => {
   const [date, setDate] = useState("");
