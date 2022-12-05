@@ -7,6 +7,7 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "./config";
 
@@ -71,6 +72,26 @@ const Profile = () => {
     console.log("delete");
     deleteDoc(doc(db, "users ", "1"));
   }
+
+  const [allUser, setAllUser] = useState([]);
+
+  // const userCollectionRef = collection(db, "users");
+  const getUsers = async () => {
+    console.log("get");
+    const data = await getDocs(collection(db, "users "));
+    console.log(data.docs);
+    setAllUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+  function show() {
+    console.log("allUser--------------------------------");
+    console.log(allUser);
+    console.log("allUser name and mail--------------------------------");
+    allUser.map((user) => {
+      console.log(user.username + " : " + user.email);
+      // console.log(user.email);
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Profile</Text>
@@ -99,6 +120,8 @@ const Profile = () => {
       />
       <Button style={styles.btn} title="Update" onPress={update} />
       <Button style={styles.btn} title="delete" onPress={deleteData} />
+      <Button style={styles.btn} title="get" onPress={getUsers} />
+      <Button style={styles.btn} title="show data" onPress={show} />
     </View>
   );
 };
