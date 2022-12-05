@@ -34,12 +34,33 @@ const Show = ({ navigation }) => {
     // console.log("all info--------------------------------");
     // console.log(tableData);
 
-  
-
     tableData.map((rowData, index) =>
       rowData.map((cellData, cellIndex) => console.log(cellData))
     );
   }
+
+  const [columnName, setColumnName] = useState([
+    "date",
+    "invoice_no",
+    "name",
+    "address",
+    "email",
+    "mobile",
+    "qty",
+    "product",
+    "product_price",
+    "advance",
+    "update",
+    "delivery_charge",
+    "delivery_company",
+    "remark",
+    "first_followup",
+    "second_followup",
+    "third_followup",
+    "bkash_cost",
+    "other",
+    "deposit_to_account",
+  ]);
 
   const [tableHead, setTableHead] = useState([
     "Date",
@@ -98,7 +119,7 @@ const Show = ({ navigation }) => {
   };
 
   const element = (data, index) => (
-    <TouchableOpacity onPress={() => alertIndex(index)}>
+    <TouchableOpacity onPress={() => alertIndex(data)}>
       <View style={styles.btn}>
         <Text style={styles.btnTextDelete}>Delete</Text>
         <Text style={styles.btnTextUpdate}>Update</Text>
@@ -119,14 +140,17 @@ const Show = ({ navigation }) => {
               style={styles.head}
               textStyle={styles.text}
             />
-            {tableData.map((rowData, index) => (
+            {allInvoice.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
-                {rowData.map((cellData, cellIndex) => (
+                {/* {Object.values(rowData).map((cellData, cellIndex) => ( */}
+                {columnName.map((cellData, cellIndex) => (
                   <Cell
                     width={140}
                     key={cellIndex}
                     data={
-                      cellIndex === 19 ? element(cellData, index) : cellData
+                      cellIndex === 19
+                        ? element(cellData, index)
+                        : rowData[`${cellData}`]
                     }
                     textStyle={styles.text}
                   />

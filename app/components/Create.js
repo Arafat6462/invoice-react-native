@@ -41,7 +41,7 @@ const Create = ({ navigation }) => {
       product: product,
       product_price: productPrice,
       advance: advance,
-      orderUpdate: orderUpdate,
+      update: orderUpdate,
       delivery_charge: deliveryCharge,
       delivery_company: deliveryCompany,
       remark: remark,
