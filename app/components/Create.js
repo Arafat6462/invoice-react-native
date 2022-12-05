@@ -18,7 +18,7 @@ const Create = ({ navigation }) => {
   const [product, setProduct] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [advance, setAdvance] = useState(0);
-  const [update, setUpdate] = useState("");
+  const [orderUpdate, setOrderUpdate] = useState("");
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [deliveryCompany, setDeliveryCompany] = useState("");
   const [remark, setRemark] = useState("");
@@ -42,7 +42,7 @@ const Create = ({ navigation }) => {
       product: product,
       product_price: productPrice,
       advance: advance,
-      update: update,
+      orderUpdate: orderUpdate,
       delivery_charge: deliveryCharge,
       delivery_company: deliveryCompany,
       remark: remark,
@@ -111,7 +111,7 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Product"
             placeholder="Head Phone"
-            onChangeText={(text) => setProduct()}
+            onChangeText={(text) => setProduct(text)}
           />
           <InputItem
             label="Product Price"
@@ -128,7 +128,7 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Order Update"
             placeholder="Delivered"
-            onChangeText={(text) => setUpdate(text)}
+            onChangeText={(text) => setOrderUpdate(text)}
           />
           <InputItem
             label="Delivery Charge"
