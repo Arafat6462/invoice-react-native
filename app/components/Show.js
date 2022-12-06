@@ -98,9 +98,17 @@ const Show = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal={true}>
-        <ScrollView vertical={true}>
+        <ScrollView
+          vertical={true}
+          contentContainerStyle={{ paddingBottom: 100 }}
+        >
           <Table borderStyle={{ borderColor: "blue", borderWidth: 0.5 }}>
-            <Row data={tableHead} width={140} textStyle={styles.head} />
+            <Row
+              data={tableHead}
+              width={140}
+              textStyle={styles.head}
+              style={{ backgroundColor: "#367588" }}
+            />
             {allInvoice.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
                 {columnName.map((cellData, cellIndex) => (
@@ -130,13 +138,13 @@ const styles = StyleSheet.create({
     // padding: 16,
     // paddingTop: 30,
     // color: "#93c47d",
-    backgroundColor: "#367588",
-
+    backgroundColor: "#fff",
+    // marginBottom: "25%",
     // margin: 5,
   },
   head: {
     margin: 6,
-    backgroundColor: "#808B97",
+    // backgroundColor: "#367588",
     alignSelf: "center",
     textAlignVertical: "center",
     color: "white",
