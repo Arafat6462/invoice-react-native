@@ -8,7 +8,11 @@ const ProfileNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerTransparent: true, title: "" }}>
       <Stack.Screen name="Show Item" component={Show} />
-      <Stack.Screen name="Update" component={Update} />
+      <Stack.Screen
+        name="Update"
+        component={Update}
+        // options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

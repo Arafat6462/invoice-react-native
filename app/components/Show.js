@@ -102,7 +102,7 @@ const Show = ({ navigation }) => {
       <Pressable style={styles.button}>
         <Text
           style={styles.textUpdate}
-          onPress={() => alertIndex("Update : ", id)}
+          onPress={() => navigation.navigate("Update")}
         >
           {"Update"}
         </Text>
