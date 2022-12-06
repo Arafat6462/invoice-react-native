@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Alert,
   Pressable,
+  SafeAreaView,
 } from "react-native";
 import {
   Table,
@@ -18,7 +19,16 @@ import {
   Cols,
   Cell,
 } from "react-native-table-component";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  setDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDocs,
+} from "firebase/firestore";
+
 import { db } from "./config";
 
 const Show = ({ navigation }) => {
@@ -78,17 +88,25 @@ const Show = ({ navigation }) => {
     "Action",
   ]);
 
-  const alertIndex = (index) => {
-    Alert.alert(`This is row ${index + 1}`);
+  const alertIndex = (index, id) => {
+    Alert.alert(`This is row ${index + id}`);
   };
 
-  const element = (data, index) => (
+  const deleteInvoice = (id) => {
+    console.log("delete : " + id);
+    deleteDoc(doc(db, "invoice", id));
+  };
+
+  const element = (id, index) => (
     <View>
       <Pressable style={styles.button}>
-        <Text style={styles.textUpdate} onPress={() => alertIndex("Update")}>
+        <Text
+          style={styles.textUpdate}
+          onPress={() => alertIndex("Update : ", id)}
+        >
           {"Update"}
         </Text>
-        <Text style={styles.textDelete} onPress={() => alertIndex("Delete")}>
+        <Text style={styles.textDelete} onPress={() => deleteInvoice(id)}>
           {"Delete"}
         </Text>
       </Pressable>
@@ -96,7 +114,7 @@ const Show = ({ navigation }) => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView horizontal={true}>
         <ScrollView
           vertical={true}
@@ -118,7 +136,7 @@ const Show = ({ navigation }) => {
                     key={cellIndex}
                     data={
                       cellIndex === 19
-                        ? element(cellData, index)
+                        ? element(rowData[`${"id"}`], index)
                         : rowData[`${cellData}`]
                     }
                   />
@@ -128,7 +146,7 @@ const Show = ({ navigation }) => {
           </Table>
         </ScrollView>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

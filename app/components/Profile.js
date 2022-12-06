@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TextInput,
+  SafeAreaView,
+} from "react-native";
 import {
   collection,
   doc,
@@ -93,7 +100,7 @@ const Profile = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Profile</Text>
       <TextInput
         style={styles.textBoxes}
@@ -122,7 +129,7 @@ const Profile = () => {
       <Button style={styles.btn} title="delete" onPress={deleteData} />
       <Button style={styles.btn} title="get" onPress={getUsers} />
       <Button style={styles.btn} title="show data" onPress={show} />
-    </View>
+    </SafeAreaView>
   );
 };
 
