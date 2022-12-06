@@ -34,11 +34,12 @@ import { db } from "./config";
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
 
+  const getInvoice = async () => {
+    const data = await getDocs(collection(db, "invoice"));
+    setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-    const getInvoice = async () => {
-      const data = await getDocs(collection(db, "invoice"));
-      setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
     getInvoice();
   }, []);
 
@@ -95,6 +96,7 @@ const Show = ({ navigation }) => {
   const deleteInvoice = (id) => {
     console.log("delete : " + id);
     deleteDoc(doc(db, "invoice", id));
+    getInvoice();
   };
 
   const element = (id, index) => (
@@ -102,7 +104,7 @@ const Show = ({ navigation }) => {
       <Pressable style={styles.button}>
         <Text
           style={styles.textUpdate}
-          onPress={() => navigation.navigate("Update")}
+          onPress={() => navigation.navigate("Update", { id: id })}
         >
           {"Update"}
         </Text>

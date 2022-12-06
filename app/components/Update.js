@@ -6,7 +6,8 @@ import InputItem from "./InputItem";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./config";
 
-const Update = ({ navigation }) => {
+const Update = ({ navigation, route }) => {
+  const [id, setid] = useState(route.params.id);
   const [date, setDate] = useState("");
   const [invoiceNo, setInvoiceNo] = useState(0);
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ const Update = ({ navigation }) => {
   // get data to update
   useEffect(() => {
     const getInvoice = async () => {
-      const docRef = doc(db, "invoice", "elu4juzMMinggSHsFHiV");
+      const docRef = doc(db, "invoice", id);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -68,7 +69,7 @@ const Update = ({ navigation }) => {
   // Add a new document in collection "invoice"
   const updateInvoice = async () => {
     // Add a new document in collection "cities"
-    updateDoc(doc(db, "invoice", "elu4juzMMinggSHsFHiV"), {
+    updateDoc(doc(db, "invoice", id), {
       date: date,
       invoice_no: invoiceNo,
       name: name,
