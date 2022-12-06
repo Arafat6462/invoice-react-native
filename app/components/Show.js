@@ -64,6 +64,7 @@ const Show = ({ navigation }) => {
     "bkash_cost",
     "other",
     "deposit_to_account",
+    "Action"
   ]);
 
   const [tableHead, setTableHead] = useState([
@@ -76,6 +77,7 @@ const Show = ({ navigation }) => {
     "QTY",
     "Product",
     "Product Price",
+    "Advance",
     "Order Update",
     "Delivery Charge",
     "Delivery Company",
@@ -137,7 +139,7 @@ const Show = ({ navigation }) => {
                     width={140}
                     key={cellIndex}
                     data={
-                      cellIndex === 19
+                      cellIndex === 20
                         ? element(rowData[`${"id"}`], index)
                         : rowData[`${cellData}`]
                     }
