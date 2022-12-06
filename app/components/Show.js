@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  Pressable,
 } from "react-native";
 import {
   Table,
@@ -82,12 +83,16 @@ const Show = ({ navigation }) => {
   };
 
   const element = (data, index) => (
-    <TouchableOpacity onPress={() => alertIndex(data)}>
-      <View style={styles.btn}>
-        <Text style={styles.btnTextDelete}>Delete</Text>
-        <Text style={styles.btnTextUpdate}>Update</Text>
-      </View>
-    </TouchableOpacity>
+    <View>
+      <Pressable style={styles.button}>
+        <Text style={styles.textUpdate} onPress={() => alertIndex("Update")}>
+          {"Update"}
+        </Text>
+        <Text style={styles.textDelete} onPress={() => alertIndex("Delete")}>
+          {"Delete"}
+        </Text>
+      </Pressable>
+    </View>
   );
 
   return (
@@ -95,16 +100,12 @@ const Show = ({ navigation }) => {
       <ScrollView horizontal={true}>
         <ScrollView vertical={true}>
           <Table borderStyle={{ borderColor: "blue", borderWidth: 0.5 }}>
-            <Row
-              data={tableHead}
-              width={140}
-              style={styles.head}
-              textStyle={styles.text}
-            />
+            <Row data={tableHead} width={140} textStyle={styles.head} />
             {allInvoice.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
                 {columnName.map((cellData, cellIndex) => (
                   <Cell
+                    textStyle={styles.cell}
                     width={140}
                     key={cellIndex}
                     data={
@@ -112,7 +113,6 @@ const Show = ({ navigation }) => {
                         ? element(cellData, index)
                         : rowData[`${cellData}`]
                     }
-                    textStyle={styles.text}
                   />
                 ))}
               </TableWrapper>
@@ -125,21 +125,51 @@ const Show = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
-  head: { height: 60, backgroundColor: "#808B97" },
-  text: { margin: 6, textAlign: "center" },
-  row: { flexDirection: "row", backgroundColor: "#F0F1C1" },
-  btn: {
+  container: {
+    // flex: 1,
+    // padding: 16,
+    // paddingTop: 30,
+    // color: "#93c47d",
+    backgroundColor: "#367588",
+
+    // margin: 5,
+  },
+  head: {
+    margin: 6,
+    backgroundColor: "#808B97",
+    alignSelf: "center",
+    textAlignVertical: "center",
+    color: "white",
+  },
+  cell: { margin: 8, textAlign: "center" },
+  row: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+  },
+
+  button: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    // marginLeft: 20,
-    // width: 58,
-    // height: 18,
-    backgroundColor: "#78B7BB",
-    borderRadius: 2,
   },
-  btnTextDelete: { textAlign: "center", color: "#f44" },
-  btnTextUpdate: { textAlign: "center", color: "#4fa" },
+  textUpdate: {
+    borderRadius: 6,
+    elevation: 6,
+    shadowColor: "purple",
+    color: "white",
+    backgroundColor: "#1a22f7",
+    margin: 8,
+    padding: 8,
+  },
+  textDelete: {
+    borderRadius: 6,
+    elevation: 6,
+    shadowColor: "red",
+    color: "white",
+    backgroundColor: "orange",
+    margin: 8,
+    padding: 8,
+  },
 });
 export default Show;
+// #332b6300
