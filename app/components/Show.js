@@ -39,9 +39,14 @@ const Show = ({ navigation }) => {
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  useEffect(() => {
-    getInvoice();
-  }, []);
+  // refresh page data on navigation change
+  React.useEffect(() => {
+    const focusHandler = navigation.addListener("focus", () => {
+      // Alert.alert("Refreshed");
+      getInvoice();
+    });
+    return focusHandler;
+  }, [navigation]);
 
   const [columnName, setColumnName] = useState([
     "date",
@@ -64,7 +69,7 @@ const Show = ({ navigation }) => {
     "bkash_cost",
     "other",
     "deposit_to_account",
-    "Action"
+    "Action",
   ]);
 
   const [tableHead, setTableHead] = useState([
