@@ -77,7 +77,7 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Invoice No"
             placeholder="6"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setInvoiceNo(text)}
           />
           <InputItem
@@ -97,14 +97,14 @@ const Create = ({ navigation }) => {
           />
           <InputItem
             label="Mobile"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             placeholder="0177776666555"
             onChangeText={(text) => setMobile(text)}
           />
           <InputItem
             label="QTY"
             placeholder="3"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setQty(text)}
           />
           <InputItem
@@ -115,13 +115,13 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Product Price"
             placeholder="1020"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setProductPrice(text)}
           />
           <InputItem
             label="Advance"
             placeholder="500"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setAdvance(text)}
           />
           <InputItem
@@ -132,7 +132,7 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Delivery Charge"
             placeholder="75"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setDeliveryCharge(text)}
           />
           <InputItem
@@ -163,19 +163,19 @@ const Create = ({ navigation }) => {
           <InputItem
             label="bKash Cost"
             placeholder="20"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setBkashCost(text)}
           />
           <InputItem
             label="Others (VAT, TAX, etc.)"
             placeholder="10"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setOther(text)}
           />
           <InputItem
             label="Deposit to Accounts"
             placeholder="800"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             onChangeText={(text) => setDepositToAccount(text)}
           />
           <Btn title="Create" onPress={createInvoice} />
