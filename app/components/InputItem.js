@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "blue",
     fontSize: 16,
+    height: 55,
   },
 });
 
