@@ -72,109 +72,129 @@ const Create = ({ navigation }) => {
           <InputItem
             label="Date"
             placeholder="2022-10-27"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setDate(text)}
           />
           <InputItem
             label="Invoice No"
             placeholder="6"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setInvoiceNo(text)}
           />
           <InputItem
             label="Name"
             placeholder="Arafat hossain"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setName(text)}
           />
           <InputItem
             label="Address"
             placeholder="Gulshan-1, Dhaka"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setAddress(text)}
           />
           <InputItem
             label="Email"
             placeholder="abc@gmail.com"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setEmail(text)}
           />
           <InputItem
             label="Mobile"
             keyboardType="numeric"
             placeholder="0177776666555"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setMobile(text)}
           />
           <InputItem
             label="QTY"
             placeholder="3"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setQty(text)}
           />
           <InputItem
             label="Product"
             placeholder="Head Phone"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setProduct(text)}
           />
           <InputItem
             label="Product Price"
             placeholder="1020"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setProductPrice(text)}
           />
           <InputItem
             label="Advance"
             placeholder="500"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setAdvance(text)}
           />
           <InputItem
             label="Order Update"
             placeholder="Delivered"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setOrderUpdate(text)}
           />
           <InputItem
             label="Delivery Charge"
             placeholder="75"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setDeliveryCharge(text)}
           />
           <InputItem
             label="Delivery Company"
             placeholder="RedX"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setDeliveryCompany(text)}
           />
           <InputItem
             label="Remarks"
             placeholder="Nothing"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setRemark(text)}
           />
           <InputItem
             label="1st Followup"
             placeholder="Processing"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setFirst_followup(text)}
           />
           <InputItem
             label="2nd Followup"
             placeholder="N/A"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setSecond_followupId(text)}
           />
           <InputItem
             label="3rd Followup"
             placeholder="N/A"
+            placeholderTextColor="#80808040"
             onChangeText={(text) => setThird_followup(text)}
           />
           <InputItem
             label="bKash Cost"
             placeholder="20"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setBkashCost(text)}
           />
           <InputItem
             label="Others (VAT, TAX, etc.)"
             placeholder="10"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setOther(text)}
           />
           <InputItem
             label="Deposit to Accounts"
             placeholder="800"
+            placeholderTextColor="#80808040"
             keyboardType="numeric"
             onChangeText={(text) => setDepositToAccount(text)}
           />

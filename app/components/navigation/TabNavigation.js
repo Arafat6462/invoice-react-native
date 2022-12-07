@@ -12,7 +12,7 @@ const TabNavigation = () => {
   return (
     <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen
-        name="Invoice"
+        name="Order"
         component={ProfileNavigation}
         initialParams={{ icon: "appstore-o" }}
       />
