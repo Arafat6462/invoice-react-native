@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "invoice",
-    "slug": "invoice",
+    "name": "Order",
+    "slug": "Order",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon3.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash3.png",
       "resizeMode": "contain",
-      "backgroundColor": "#3C565B"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -19,13 +19,13 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.arafat6462.invoice"
+      "bundleIdentifier": "com.arafat6462.Order"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.arafat6462.invoice"
+      "package": "com.arafat6462.Order"
     },
     "web": {},
     "extra": {
