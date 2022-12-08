@@ -27,6 +27,9 @@ import {
   updateDoc,
   deleteDoc,
   getDocs,
+  orderBy,
+  where,
+  query,
 } from "firebase/firestore";
 
 import { db } from "./config";
@@ -34,10 +37,16 @@ import { db } from "./config";
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
 
+  // get all data from firebase order by time_stamp
   const getInvoice = async () => {
-    const data = await getDocs(collection(db, "invoice"));
+    const data = await getDocs(
+      query(collection(db, "invoice"), orderBy("time_stamp", "desc"))
+    );
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
+
+  // where("name", "==", "Name")
+  // orderBy("time_stamp")
 
   // refresh page data on navigation change
   React.useEffect(() => {

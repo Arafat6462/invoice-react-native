@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Btn from "./Btn";
 import InputItem from "./InputItem";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "./config";
 
 const Create = ({ navigation }) => {
@@ -51,6 +51,7 @@ const Create = ({ navigation }) => {
       bkash_cost: bkashCost,
       other: other,
       deposit_to_account: depositToAccount,
+      time_stamp: serverTimestamp(),
     })
       .then(() => {
         //Data save Successfully
