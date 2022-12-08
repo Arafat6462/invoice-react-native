@@ -3,7 +3,7 @@ import { Text, StyleSheet, SafeAreaView } from "react-native";
 const Profile = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
+      <Text style={styles.text}>version 1.0.0</Text>
     </SafeAreaView>
   );
 };
@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
+  },
+  text: {
+    color: "gray",
   },
 });
 
