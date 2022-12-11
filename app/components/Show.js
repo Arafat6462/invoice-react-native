@@ -33,6 +33,10 @@ import {
 } from "firebase/firestore";
 
 import { db } from "./config";
+// expo add expo-file-system expo-sharing xlsx
+import * as XLSX from "xlsx";
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
 
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
@@ -115,6 +119,31 @@ const Show = ({ navigation }) => {
     getInvoice();
   };
 
+  // Download as Xlsx
+  const downloadDataAsXlsx = () => {
+    console.log(allInvoice);
+    console.log("inside Xlsx");
+
+    let wb = XLSX.utils.book_new();
+    let ws = XLSX.utils.aoa_to_sheet([
+      ["odd", "even", "total"],
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ]);
+
+    let ws2 = XLSX.utils.json_to_sheet(allInvoice);
+    XLSX.utils.book_append_sheet(wb, ws2, "MySecondSheet");
+
+    const base64 = XLSX.write(wb, { type: "base64" });
+    const filename = FileSystem.documentDirectory + "MyExcel.xlsx";
+    FileSystem.writeAsStringAsync(filename, base64, {
+      encoding: FileSystem.EncodingType.Base64,
+    }).then(() => {
+      Sharing.shareAsync(filename);
+    });
+  };
+
   const element = (id, index) => (
     <View>
       <Pressable style={styles.button}>
@@ -133,6 +162,7 @@ const Show = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Button title="Download as Xlsx" onPress={downloadDataAsXlsx} />
       <ScrollView horizontal={true}>
         <ScrollView
           vertical={true}
