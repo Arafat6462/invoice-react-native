@@ -162,18 +162,22 @@ const Show = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Button title="Download as Xlsx" onPress={downloadDataAsXlsx} />
+      <View style={styles.downloadView}>
+        <Text style={styles.downloadBtn} onPress={downloadDataAsXlsx}>
+          {"Download as XLSX"}
+        </Text>
+      </View>
       <ScrollView horizontal={true}>
         <ScrollView
           vertical={true}
           contentContainerStyle={{ paddingBottom: 100 }}
         >
-          <Table borderStyle={{ borderColor: "blue", borderWidth: 0.5 }}>
+          <Table borderStyle={{ borderColor: "#32CD32", borderWidth: 0.4 }}>
             <Row
               data={tableHead}
               width={140}
               textStyle={styles.head}
-              style={{ backgroundColor: "#367588" }}
+              style={{ backgroundColor: "#3CB371" }}
             />
             {allInvoice.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
@@ -213,7 +217,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#367588",
     alignSelf: "center",
     textAlignVertical: "center",
-    color: "white",
+    color: "#000",
   },
   cell: { margin: 8, textAlign: "center" },
   row: {
@@ -241,6 +245,19 @@ const styles = StyleSheet.create({
     shadowColor: "red",
     color: "white",
     backgroundColor: "orange",
+    margin: 8,
+    padding: 8,
+  },
+  downloadView: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  downloadBtn: {
+    borderRadius: 6,
+    elevation: 8,
+    shadowColor: "blue",
+    color: "white",
+    backgroundColor: "#1E90FF",
     margin: 8,
     padding: 8,
   },
