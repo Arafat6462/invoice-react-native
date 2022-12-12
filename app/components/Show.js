@@ -163,9 +163,14 @@ const Show = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.downloadView}>
-        <Text style={styles.downloadBtn} onPress={downloadDataAsXlsx}>
-          {"Download as XLSX"}
-        </Text>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          
+          style={styles.downloadOpacity}
+          onPress={downloadDataAsXlsx}
+        >
+          <Text style={styles.downloadText}>{"Download as XLSX"}</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal={true}>
         <ScrollView
@@ -209,7 +214,8 @@ const styles = StyleSheet.create({
     // paddingTop: 30,
     // color: "#93c47d",
     backgroundColor: "#fff",
-    // marginBottom: "25%",
+    marginBottom: "12%",
+    // marginTop: "15%",
     // margin: 5,
   },
   head: {
@@ -252,14 +258,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
   },
-  downloadBtn: {
+  downloadOpacity: {
     borderRadius: 6,
     elevation: 8,
     shadowColor: "blue",
-    color: "white",
     backgroundColor: "#1E90FF",
     margin: 8,
     padding: 8,
+  },
+  downloadText: {
+    color: "white",
   },
 });
 export default Show;
