@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import TabNavigation from "./app/components/navigation/TabNavigation";
+import TabNavigation from "./app/navigation/TabNavigation";
 import { LogBox } from "react-native";
 import "react-native-gesture-handler";
 

@@ -32,7 +32,7 @@ import {
   query,
 } from "firebase/firestore";
 
-import { db } from "./config";
+import { db } from "../components/config";
 // expo add expo-file-system expo-sharing xlsx
 import * as XLSX from "xlsx";
 import * as FileSystem from "expo-file-system";

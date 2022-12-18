@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Btn from "./Btn";
-import InputItem from "./InputItem";
+import Btn from "../components/Btn";
+import InputItem from "../components/InputItem";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "./config";
+import { db } from "../components/config";
 
 const Create = ({ navigation }) => {
   const [date, setDate] = useState("");

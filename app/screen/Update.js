@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Btn from "./Btn";
-import InputItem from "./InputItem";
+import Btn from "../components/Btn";
+import InputItem from "../components/InputItem";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "./config";
+import { db } from "../components/config";
 
 const Update = ({ navigation, route }) => {
   const [id, setid] = useState(route.params.id);
