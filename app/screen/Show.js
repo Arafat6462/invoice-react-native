@@ -49,9 +49,6 @@ const Show = ({ navigation }) => {
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  // where("name", "==", "Name")
-  // orderBy("time_stamp")
-
   // refresh page data on navigation change
   React.useEffect(() => {
     const focusHandler = navigation.addListener("focus", () => {
@@ -109,34 +106,24 @@ const Show = ({ navigation }) => {
     "Action",
   ]);
 
-  const alertIndex = (index, id) => {
-    Alert.alert(`This is row ${index + id}`);
-  };
-
+  // Delete by ID
   const deleteInvoice = (id) => {
-    console.log("delete : " + id);
+    // console.log("delete : " + id);
     deleteDoc(doc(db, "invoice", id));
-    getInvoice();
+    getInvoice(); // to refresh table
   };
 
   // Download as Xlsx
   const downloadDataAsXlsx = () => {
-    console.log(allInvoice);
-    console.log("inside Xlsx");
+    // console.log(allInvoice);
+    // console.log("inside Xlsx");
 
     let wb = XLSX.utils.book_new();
-    let ws = XLSX.utils.aoa_to_sheet([
-      ["odd", "even", "total"],
-      [1, 2],
-      [3, 4],
-      [5, 6],
-    ]);
-
     let ws2 = XLSX.utils.json_to_sheet(allInvoice);
     XLSX.utils.book_append_sheet(wb, ws2, "MySecondSheet");
-
     const base64 = XLSX.write(wb, { type: "base64" });
-    const filename = FileSystem.documentDirectory + "MyExcel.xlsx";
+    const filename = FileSystem.documentDirectory + "Order.xlsx";
+
     FileSystem.writeAsStringAsync(filename, base64, {
       encoding: FileSystem.EncodingType.Base64,
     }).then(() => {
@@ -144,6 +131,7 @@ const Show = ({ navigation }) => {
     });
   };
 
+  // Update,Delete button
   const element = (id, index) => (
     <View>
       <Pressable style={styles.button}>
@@ -165,11 +153,10 @@ const Show = ({ navigation }) => {
       <View style={styles.downloadView}>
         <TouchableOpacity
           activeOpacity={0.6}
-          
           style={styles.downloadOpacity}
           onPress={downloadDataAsXlsx}
         >
-          <Text style={styles.downloadText}>{"Download as XLSX"}</Text>
+          <Text style={styles.downloadText}>{" Download "}</Text>
         </TouchableOpacity>
       </View>
       <ScrollView horizontal={true}>

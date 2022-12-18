@@ -29,7 +29,7 @@ const Update = ({ navigation, route }) => {
   const [other, setOther] = useState(0);
   const [depositToAccount, setDepositToAccount] = useState(0);
 
-  // get data to update
+  // get data from database to update
   useEffect(() => {
     const getInvoice = async () => {
       const docRef = doc(db, "invoice", id);
@@ -68,7 +68,6 @@ const Update = ({ navigation, route }) => {
 
   // Add a new document in collection "invoice"
   const updateInvoice = async () => {
-    // Add a new document in collection "cities"
     updateDoc(doc(db, "invoice", id), {
       date: date,
       invoice_no: invoiceNo,
