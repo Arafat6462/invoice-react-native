@@ -113,6 +113,15 @@ const Show = ({ navigation }) => {
     getInvoice(); // to refresh table
   };
 
+  const deleteAlert = (id) => {
+    Alert.alert(
+      "Alert",
+      "Do you want to delete ?",
+      [{ text: "No" }, { text: "Yes", onPress: () => deleteInvoice(id) }],
+      { cancelable: true }
+    );
+  };
+
   // Download as Xlsx
   const downloadDataAsXlsx = () => {
     // console.log(allInvoice);
@@ -141,7 +150,7 @@ const Show = ({ navigation }) => {
         >
           {"Update"}
         </Text>
-        <Text style={styles.textDelete} onPress={() => deleteInvoice(id)}>
+        <Text style={styles.textDelete} onPress={() => deleteAlert(id)}>
           {"Delete"}
         </Text>
       </Pressable>

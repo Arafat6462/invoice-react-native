@@ -61,6 +61,8 @@ const Create = ({ navigation }) => {
         //Failed
         console.log(error);
       });
+    // back to show Invoice
+    navigation.navigate("Show Item");
   }
 
   // console.log("and name is : " + inputs.name);
