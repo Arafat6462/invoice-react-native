@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   Button,
   ScrollView,
@@ -40,6 +41,7 @@ import * as Sharing from "expo-sharing";
 
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   // get all data from firebase order by time_stamp
   const getInvoice = async () => {
@@ -159,6 +161,16 @@ const Show = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.searchView}>
+        <View style={styles.innerSearchView}>
+          <TextInput
+            style={styles.searchInput}
+            onChangeText={setSearchInput}
+            placeholder="Search"
+          />
+        </View>
+        <Text>{"Filter"}</Text>
+      </View>
       <View style={styles.downloadView}>
         <TouchableOpacity
           activeOpacity={0.6}
@@ -264,6 +276,25 @@ const styles = StyleSheet.create({
   },
   downloadText: {
     color: "white",
+  },
+
+  searchView: {
+    height: 55,
+    backgroundColor: "#eff1f9",
+    flexDirection: "row",
+    paddingHorizontal: 15,
+    borderWidth: 0.5,
+    alignItems: "center",
+    borderRadius: 10,
+  },
+  innerSearchView:{
+
+  },
+  searchInput: {
+    flex: 1,
+    color: "blue",
+    fontSize: 16,
+    height: 55,
   },
 });
 export default Show;
