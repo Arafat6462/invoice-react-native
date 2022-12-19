@@ -161,17 +161,14 @@ const Show = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.searchView}>
-        <View style={styles.innerSearchView}>
-          <TextInput
-            style={styles.searchInput}
-            onChangeText={setSearchInput}
-            placeholder="Search"
-          />
-        </View>
-        <Text>{"Filter"}</Text>
-      </View>
-      <View style={styles.downloadView}>
+      <View style={styles.topView}>
+        <TextInput
+          style={styles.searchInput}
+          onChangeText={setSearchInput}
+          placeholder="Search"
+        />
+        <Text style={styles.searchFilter}>{"Filter"}</Text>
+
         <TouchableOpacity
           activeOpacity={0.6}
           style={styles.downloadOpacity}
@@ -262,9 +259,10 @@ const styles = StyleSheet.create({
     margin: 8,
     padding: 8,
   },
-  downloadView: {
+  topView: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-evenly",
+    paddingBottom: 10,
   },
   downloadOpacity: {
     borderRadius: 6,
@@ -278,23 +276,28 @@ const styles = StyleSheet.create({
     color: "white",
   },
 
-  searchView: {
-    height: 55,
-    backgroundColor: "#eff1f9",
-    flexDirection: "row",
-    paddingHorizontal: 15,
-    borderWidth: 0.5,
-    alignItems: "center",
-    borderRadius: 10,
-  },
-  innerSearchView:{
-
-  },
   searchInput: {
     flex: 1,
-    color: "blue",
     fontSize: 16,
-    height: 55,
+    height: 50,
+    backgroundColor: "#eff1f9",
+    marginLeft: 20,
+    textAlign: "center",
+    borderBottomLeftRadius: 6,
+    borderTopLeftRadius: 6,
+    color: "blue",
+  },
+  searchFilter: {
+    height: 50,
+    width: 70,
+    borderTopRightRadius: 6,
+    borderBottomRightRadius: 6,
+    elevation: 6,
+    shadowColor: "red",
+    color: "white",
+    backgroundColor: "orange",
+    textAlign: "center",
+    textAlignVertical: "center",
   },
 });
 export default Show;
