@@ -48,7 +48,7 @@ const Show = ({ navigation }) => {
 
   // dropdown picker
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("name");
   const [items, setItems] = useState([
     { label: "Name", value: "name" },
     { label: "Date", value: "date" },
@@ -61,7 +61,8 @@ const Show = ({ navigation }) => {
 
   // Filter order inside table
   useEffect(() => {
-    if (searchInput == "" || searchField == "") setFilterInvoice(allInvoice);
+    if (searchField == "") setSearchField("name"); // in first load default search field
+    if (searchInput == "") setFilterInvoice(allInvoice);
     else {
       setFilterInvoice(
         allInvoice.filter((invoice) => {
