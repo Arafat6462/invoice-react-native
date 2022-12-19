@@ -61,15 +61,15 @@ const Show = ({ navigation }) => {
 
   // Filter order inside Order table
   useEffect(() => {
-    console.log("Search : " + searchInput);
-    console.log("Field : " + searchField);
-
-    setFilterInvoice(
-      allInvoice.filter((invoice) => {
-        return invoice.name == "A";
-      })
-    );
-  }, [searchInput]);
+    if (searchInput == "") setFilterInvoice(allInvoice);
+    else {
+      setFilterInvoice(
+        allInvoice.filter((invoice) => {
+          return invoice[`${searchField}`] == searchInput;
+        })
+      );
+    }
+  }, [searchInput, searchField]);
 
   // get all data from firebase order by time_stamp
   const getInvoice = async () => {
@@ -77,6 +77,8 @@ const Show = ({ navigation }) => {
       query(collection(db, "invoice"), orderBy("time_stamp", "desc"))
     );
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setFilterInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    
   };
 
   // refresh page data on navigation change
@@ -246,7 +248,7 @@ const Show = ({ navigation }) => {
               textStyle={styles.head}
               style={{ backgroundColor: "#3CB371" }}
             />
-            {allInvoice.map((rowData, index) => (
+            {filterInvoice.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
                 {columnName.map((cellData, cellIndex) => (
                   <Cell
