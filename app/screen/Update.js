@@ -5,10 +5,11 @@ import Btn from "../components/Btn";
 import InputItem from "../components/InputItem";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../components/config";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Update = ({ navigation, route }) => {
   const [id, setid] = useState(route.params.id);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
   const [invoiceNo, setInvoiceNo] = useState(0);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -28,6 +29,21 @@ const Update = ({ navigation, route }) => {
   const [bkashCost, setBkashCost] = useState(0);
   const [other, setOther] = useState(0);
   const [depositToAccount, setDepositToAccount] = useState(0);
+
+  // Date picker
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+  const handleConfirm = (date) => {
+    // console.warn("A date has been picked: ", date);
+    setDate(date.toDateString());
+    hideDatePicker();
+  };
 
   // get data from database to update
   useEffect(() => {
@@ -113,7 +129,15 @@ const Update = ({ navigation, route }) => {
           <InputItem
             label="Date"
             value={date}
-            onChangeText={(text) => setDate(text)}
+            // onChangeText={(text) => setDate(text)}
+            onFocus={showDatePicker}
+          />
+
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
           />
           <InputItem
             label="Invoice No"

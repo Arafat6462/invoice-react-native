@@ -40,14 +40,14 @@ const Create = ({ navigation }) => {
   };
   const handleConfirm = (date) => {
     // console.warn("A date has been picked: ", date);
-    setDate(date);
+    setDate(date.toDateString());
     hideDatePicker();
   };
 
   // Add a new document in collection "invoice"
   function createInvoice() {
     addDoc(collection(db, "invoice"), {
-      date: date.toDateString(),
+      date: date,
       invoice_no: invoiceNo,
       name: name,
       address: address,
@@ -90,7 +90,7 @@ const Create = ({ navigation }) => {
           {/* all design value goes to InputItem through props and apply inside input field */}
           <InputItem
             label="Date"
-            value={date.toDateString() + ""}
+            value={date}
             placeholder="2022-10-27"
             placeholderTextColor="#80808040"
             // onChangeText={(text) => setDate(text)}
