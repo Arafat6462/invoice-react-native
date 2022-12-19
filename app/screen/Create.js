@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Btn from "../components/Btn";
 import InputItem from "../components/InputItem";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../components/config";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Create = ({ navigation }) => {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
   const [invoiceNo, setInvoiceNo] = useState(0);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -28,10 +29,25 @@ const Create = ({ navigation }) => {
   const [other, setOther] = useState(0);
   const [depositToAccount, setDepositToAccount] = useState(0);
 
+  // Date picker
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+  const handleConfirm = (date) => {
+    // console.warn("A date has been picked: ", date);
+    setDate(date);
+    hideDatePicker();
+  };
+
   // Add a new document in collection "invoice"
   function createInvoice() {
     addDoc(collection(db, "invoice"), {
-      date: date,
+      date: date.toDateString(),
       invoice_no: invoiceNo,
       name: name,
       address: address,
@@ -74,9 +90,19 @@ const Create = ({ navigation }) => {
           {/* all design value goes to InputItem through props and apply inside input field */}
           <InputItem
             label="Date"
+            value={date.toDateString() + ""}
             placeholder="2022-10-27"
             placeholderTextColor="#80808040"
-            onChangeText={(text) => setDate(text)}
+            // onChangeText={(text) => setDate(text)}
+            onFocus={showDatePicker}
+          />
+
+          {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
           />
           <InputItem
             label="Invoice No"
