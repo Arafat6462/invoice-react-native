@@ -38,10 +38,25 @@ import { db } from "../components/config";
 import * as XLSX from "xlsx";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [searchField, setSearchField] = useState("");
+
+  // dropdown picker
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "Name", value: "name" },
+    { label: "Date", value: "date" },
+    { label: "Email", value: "email" },
+    { label: "Mobile", value: "mobile" },
+    { label: "Product", value: "product" },
+    { label: "Address", value: "address" },
+    { label: "Update", value: "update" },
+  ]);
 
   // get all data from firebase order by time_stamp
   const getInvoice = async () => {
@@ -167,7 +182,36 @@ const Show = ({ navigation }) => {
           onChangeText={setSearchInput}
           placeholder="Search"
         />
-        <Text style={styles.searchFilter}>{"Filter"}</Text>
+
+        <DropDownPicker
+          style={{
+            backgroundColor: "orange",
+            borderRadius: 0,
+            borderTopRightRadius: 6,
+            borderBottomRightRadius: 6,
+            borderWidth: 0,
+          }}
+          containerStyle={{
+            width: 105,
+            borderRadius: 0,
+          }}
+          selectedItemContainerStyle={{
+            backgroundColor: "#f0f0f0",
+          }}
+          listItemLabelStyle={{
+            color: "black",
+          }}
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          onSelectItem={(item) => {
+            console.log(item.value);
+            setSearchField(item.value);
+          }}
+        />
 
         <TouchableOpacity
           activeOpacity={0.6}
@@ -281,23 +325,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 50,
     backgroundColor: "#eff1f9",
-    marginLeft: 20,
+    marginLeft: 10,
     textAlign: "center",
     borderBottomLeftRadius: 6,
     borderTopLeftRadius: 6,
     color: "blue",
-  },
-  searchFilter: {
-    height: 50,
-    width: 70,
-    borderTopRightRadius: 6,
-    borderBottomRightRadius: 6,
-    elevation: 6,
-    shadowColor: "red",
-    color: "white",
-    backgroundColor: "orange",
-    textAlign: "center",
-    textAlignVertical: "center",
   },
 });
 export default Show;
