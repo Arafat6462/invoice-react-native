@@ -66,6 +66,7 @@ const Show = ({ navigation }) => {
       setFilterInvoice(
         allInvoice.filter((invoice) => {
           return invoice[`${searchField}`]
+            .toString()
             .toLowerCase()
             .includes(searchInput.toLowerCase());
         })
