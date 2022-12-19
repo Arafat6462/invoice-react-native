@@ -42,6 +42,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
+  const [filterInvoice, setFilterInvoice] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState("");
 
@@ -57,6 +58,18 @@ const Show = ({ navigation }) => {
     { label: "Address", value: "address" },
     { label: "Update", value: "update" },
   ]);
+
+  // Filter order inside Order table
+  useEffect(() => {
+    console.log("Search : " + searchInput);
+    console.log("Field : " + searchField);
+
+    setFilterInvoice(
+      allInvoice.filter((invoice) => {
+        return invoice.name == "A";
+      })
+    );
+  }, [searchInput]);
 
   // get all data from firebase order by time_stamp
   const getInvoice = async () => {
