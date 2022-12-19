@@ -59,13 +59,15 @@ const Show = ({ navigation }) => {
     { label: "Update", value: "update" },
   ]);
 
-  // Filter order inside Order table
+  // Filter order inside table
   useEffect(() => {
-    if (searchInput == "") setFilterInvoice(allInvoice);
+    if (searchInput == "" || searchField == "") setFilterInvoice(allInvoice);
     else {
       setFilterInvoice(
         allInvoice.filter((invoice) => {
-          return invoice[`${searchField}`] == searchInput;
+          return invoice[`${searchField}`]
+            .toLowerCase()
+            .includes(searchInput.toLowerCase());
         })
       );
     }
@@ -78,7 +80,6 @@ const Show = ({ navigation }) => {
     );
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setFilterInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    
   };
 
   // refresh page data on navigation change
