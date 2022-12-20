@@ -8,7 +8,7 @@ import { db } from "../components/config";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Create = ({ navigation }) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date().toDateString());
   const [invoiceNo, setInvoiceNo] = useState(0);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
