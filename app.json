@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Order",
-    "slug": "invoice",
-    "version": "1.0.0", 
+    "slug": "Order",
+    "version": "1.0.1", 
     "orientation": "portrait",
     "icon": "./assets/icon3.png",
     "userInterfaceStyle": "automatic",
@@ -25,12 +25,13 @@
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.arafat6462.Order"
+      "package": "com.arafat6462.Order",
+      "versionCode":2
     },
     "web": {},
     "extra": {
       "eas": {
-        "projectId": "0dfe6cdb-80af-412f-828b-1eb0bf05d022"
+        "projectId": "668bdd55-13e9-4300-adb1-49ea45435738"
       }
     }
   }
