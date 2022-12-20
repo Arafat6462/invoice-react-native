@@ -10,6 +10,7 @@ import {
   Alert,
   Pressable,
   SafeAreaView,
+  RefreshControl,
 } from "react-native";
 import {
   Table,
@@ -45,6 +46,17 @@ const Show = ({ navigation }) => {
   const [filterInvoice, setFilterInvoice] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
+  // refresh on pull
+  const pullMeToRefresh = () => {
+    setRefresh(true);
+    getInvoice();
+
+    setTimeout(() => {
+      setRefresh(false);
+    }, 1000);
+  };
 
   // dropdown picker
   const [open, setOpen] = useState(false);
@@ -239,7 +251,15 @@ const Show = ({ navigation }) => {
           <Text style={styles.downloadText}>{" Download "}</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView horizontal={true}>
+      <ScrollView
+        horizontal={true}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => pullMeToRefresh()}
+          />
+        }
+      >
         <ScrollView
           vertical={true}
           contentContainerStyle={{ paddingBottom: 100 }}
