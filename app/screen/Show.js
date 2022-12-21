@@ -131,7 +131,6 @@ const Show = ({ navigation }) => {
       ...filterInvoice,
       ...data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
     ]);
-    console.log(allInvoice);
   };
 
   // refresh page data on navigation change
@@ -316,7 +315,7 @@ const Show = ({ navigation }) => {
           vertical={true}
           contentContainerStyle={{ paddingBottom: 100 }}
           onScroll={({ nativeEvent }) => {
-            if (isCloseToBottom(nativeEvent)) {
+            if (isCloseToBottom(nativeEvent) && startQueryAfter) {
               getMoreOrder();
             }
           }}
