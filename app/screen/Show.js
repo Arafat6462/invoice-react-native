@@ -30,6 +30,7 @@ import {
   deleteDoc,
   getDocs,
   orderBy,
+  limit,
   where,
   query,
 } from "firebase/firestore";
@@ -47,6 +48,8 @@ const Show = ({ navigation }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [postPerLoad] = useState(115);
+  const [startQueryAfter, setStartQueryAfter] = useState(Object);
 
   // refresh on pull
   const pullMeToRefresh = () => {
@@ -90,8 +93,16 @@ const Show = ({ navigation }) => {
   // get all data from firebase order by time_stamp
   const getInvoice = async () => {
     const data = await getDocs(
-      query(collection(db, "invoice"), orderBy("time_stamp", "desc"))
+      query(
+        collection(db, "invoice"),
+        orderBy("time_stamp", "desc"),
+        limit(postPerLoad)
+      )
     );
+    // getting last item from limit query
+    const lastVisibleOrder = data.docs[data.docs.length - 1];
+    setStartQueryAfter(lastVisibleOrder);
+
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setFilterInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
