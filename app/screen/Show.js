@@ -28,6 +28,7 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  startAfter,
   getDocs,
   orderBy,
   limit,
@@ -41,6 +42,7 @@ import * as XLSX from "xlsx";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import DropDownPicker from "react-native-dropdown-picker";
+import { async } from "@firebase/util";
 
 const Show = ({ navigation }) => {
   const [allInvoice, setAllInvoice] = useState([]);
@@ -48,7 +50,7 @@ const Show = ({ navigation }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const [postPerLoad] = useState(115);
+  const [postPerLoad] = useState(10);
   const [startQueryAfter, setStartQueryAfter] = useState(Object);
 
   // refresh on pull
@@ -105,6 +107,31 @@ const Show = ({ navigation }) => {
 
     setAllInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setFilterInvoice(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+  // Getting more order on scroll
+  const getMoreOrder = async () => {
+    const data = await getDocs(
+      query(
+        collection(db, "invoice"),
+        orderBy("time_stamp", "desc"),
+        startAfter(startQueryAfter),
+        limit(postPerLoad)
+      )
+    );
+    // getting last item from limit query
+    const lastVisibleOrder = data.docs[data.docs.length - 1];
+    setStartQueryAfter(lastVisibleOrder);
+
+    setAllInvoice([
+      ...allInvoice,
+      ...data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
+    ]);
+    setFilterInvoice([
+      ...filterInvoice,
+      ...data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
+    ]);
+    console.log(allInvoice);
   };
 
   // refresh page data on navigation change
@@ -198,6 +225,19 @@ const Show = ({ navigation }) => {
     });
   };
 
+  // scroll view reach to last
+  const isCloseToBottom = ({
+    layoutMeasurement,
+    contentOffset,
+    contentSize,
+  }) => {
+    const paddingToBottom = 2;
+    return (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
+    );
+  };
+
   // Update,Delete button
   const element = (id, index) => (
     <View>
@@ -217,53 +257,7 @@ const Show = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.topView}>
-        <TextInput
-          style={styles.searchInput}
-          onChangeText={setSearchInput}
-          placeholder="Search"
-        />
-
-        <DropDownPicker
-          style={{
-            backgroundColor: "orange",
-            borderRadius: 0,
-            borderTopRightRadius: 6,
-            borderBottomRightRadius: 6,
-            borderWidth: 0,
-          }}
-          containerStyle={{
-            width: 105,
-            borderRadius: 0,
-          }}
-          selectedItemContainerStyle={{
-            backgroundColor: "#f0f0f0",
-          }}
-          listItemLabelStyle={{
-            color: "black",
-          }}
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-          onSelectItem={(item) => {
-            console.log(item.value);
-            setSearchField(item.value);
-          }}
-        />
-
-        <TouchableOpacity
-          activeOpacity={0.6}
-          style={styles.downloadOpacity}
-          onPress={downloadDataAsXlsx}
-        >
-          <Text style={styles.downloadText}>{" Download "}</Text>
-        </TouchableOpacity>
-      </View>
       <ScrollView
-        horizontal={true}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -271,9 +265,62 @@ const Show = ({ navigation }) => {
           />
         }
       >
+        <View style={styles.topView}>
+          <TextInput
+            style={styles.searchInput}
+            onChangeText={setSearchInput}
+            placeholder="Search"
+          />
+
+          <DropDownPicker
+            style={{
+              backgroundColor: "orange",
+              borderRadius: 0,
+              borderTopRightRadius: 6,
+              borderBottomRightRadius: 6,
+              borderWidth: 0,
+            }}
+            containerStyle={{
+              width: 105,
+              borderRadius: 0,
+            }}
+            selectedItemContainerStyle={{
+              backgroundColor: "#f0f0f0",
+            }}
+            listItemLabelStyle={{
+              color: "black",
+            }}
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            onSelectItem={(item) => {
+              console.log(item.value);
+              setSearchField(item.value);
+            }}
+          />
+
+          <TouchableOpacity
+            activeOpacity={0.6}
+            style={styles.downloadOpacity}
+            onPress={downloadDataAsXlsx}
+          >
+            <Text style={styles.downloadText}>{" Download "}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+      <ScrollView horizontal={true}>
         <ScrollView
           vertical={true}
           contentContainerStyle={{ paddingBottom: 100 }}
+          onScroll={({ nativeEvent }) => {
+            if (isCloseToBottom(nativeEvent)) {
+              getMoreOrder();
+            }
+          }}
+          scrollEventThrottle={400}
         >
           <Table borderStyle={{ borderColor: "#32CD32", borderWidth: 0.4 }}>
             <Row
