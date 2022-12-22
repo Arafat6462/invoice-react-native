@@ -256,60 +256,61 @@ const Show = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => pullMeToRefresh()}
-          />
-        }
-      >
-        <View style={styles.topView}>
+      <View style={styles.topView}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => pullMeToRefresh()}
+            />
+          }
+        >
           <TextInput
             style={styles.searchInput}
             onChangeText={setSearchInput}
             placeholder="Search"
           />
+        </ScrollView>
 
-          <DropDownPicker
-            style={{
-              backgroundColor: "orange",
-              borderRadius: 0,
-              borderTopRightRadius: 6,
-              borderBottomRightRadius: 6,
-              borderWidth: 0,
-            }}
-            containerStyle={{
-              width: 105,
-              borderRadius: 0,
-            }}
-            selectedItemContainerStyle={{
-              backgroundColor: "#f0f0f0",
-            }}
-            listItemLabelStyle={{
-              color: "black",
-            }}
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            onSelectItem={(item) => {
-              console.log(item.value);
-              setSearchField(item.value);
-            }}
-          />
+        <DropDownPicker
+          style={{
+            backgroundColor: "orange",
+            borderRadius: 0,
+            borderTopRightRadius: 6,
+            borderBottomRightRadius: 6,
+            borderWidth: 0,
+          }}
+          containerStyle={{
+            width: 105,
+            borderRadius: 0,
+          }}
+          selectedItemContainerStyle={{
+            backgroundColor: "#f0f0f0",
+          }}
+          listItemLabelStyle={{
+            color: "black",
+          }}
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          onSelectItem={(item) => {
+            console.log(item.value);
+            setSearchField(item.value);
+          }}
+        />
 
-          <TouchableOpacity
-            activeOpacity={0.6}
-            style={styles.downloadOpacity}
-            onPress={downloadDataAsXlsx}
-          >
-            <Text style={styles.downloadText}>{" Download "}</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={styles.downloadOpacity}
+          onPress={downloadDataAsXlsx}
+        >
+          <Text style={styles.downloadText}>{" Download "}</Text>
+        </TouchableOpacity>
+      </View>
+
       <ScrollView horizontal={true}>
         <ScrollView
           vertical={true}
