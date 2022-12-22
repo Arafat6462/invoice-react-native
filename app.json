@@ -2,7 +2,7 @@
   "expo": {
     "name": "Order",
     "slug": "Order",
-    "version": "1.0.1", 
+    "version": "1.0.2", 
     "orientation": "portrait",
     "icon": "./assets/icon3.png",
     "userInterfaceStyle": "automatic",
@@ -19,14 +19,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.KenaBecha.Order"
+      "bundleIdentifier": "com.arafat6462.Order"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.KenaBecha.Order",
-      "versionCode":2
+      "package": "com.arafat6462.Order",
+      "versionCode":3
     },
     "web": {},
     "extra": {
