@@ -19,13 +19,13 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.arafat6462.Order"
+      "bundleIdentifier": "com.KenaBecha.Order"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.arafat6462.Order",
+      "package": "com.KenaBecha.Order",
       "versionCode":2
     },
     "web": {},
