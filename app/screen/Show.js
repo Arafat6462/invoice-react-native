@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
+  Image,
   TextInput,
   StyleSheet,
   Button,
@@ -50,18 +51,8 @@ const Show = ({ navigation }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const [postPerLoad] = useState(10);
+  const [postPerLoad] = useState(100);
   const [startQueryAfter, setStartQueryAfter] = useState(Object);
-
-  // refresh on pull
-  const pullMeToRefresh = () => {
-    setRefresh(true);
-    getInvoice();
-
-    setTimeout(() => {
-      setRefresh(false);
-    }, 1000);
-  };
 
   // dropdown picker
   const [open, setOpen] = useState(false);
@@ -237,6 +228,11 @@ const Show = ({ navigation }) => {
     );
   };
 
+  // Refresh
+  const refreshTable = () => {
+    getInvoice();
+  };
+
   // Update,Delete button
   const element = (id, index) => (
     <View>
@@ -257,20 +253,11 @@ const Show = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>
-        <ScrollView
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => pullMeToRefresh()}
-            />
-          }
-        >
-          <TextInput
-            style={styles.searchInput}
-            onChangeText={setSearchInput}
-            placeholder="Search"
-          />
-        </ScrollView>
+        <TextInput
+          style={styles.searchInput}
+          onChangeText={setSearchInput}
+          placeholder="Search"
+        />
 
         <DropDownPicker
           style={{
@@ -307,7 +294,13 @@ const Show = ({ navigation }) => {
           style={styles.downloadOpacity}
           onPress={downloadDataAsXlsx}
         >
-          <Text style={styles.downloadText}>{" Download "}</Text>
+          <Text style={styles.downloadText}>{"Download"}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.refreshImg} onPress={refreshTable}>
+          <Image
+            style={styles.refreshImg}
+            source={require("../../assets/refresh.png")}
+          />
         </TouchableOpacity>
       </View>
 
@@ -426,6 +419,11 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 6,
     borderTopLeftRadius: 6,
     color: "blue",
+  },
+  refreshImg: {
+    width: 30,
+    height: 30,
+    alignSelf: "center",
   },
 });
 export default Show;
