@@ -36,6 +36,7 @@ const Create = ({ navigation }) => {
     QTY: true,
   });
   let requiredFlag = true;
+  const [requiredStatus, setRequiredStatus] = useState("");
 
   // Date picker
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -63,6 +64,7 @@ const Create = ({ navigation }) => {
           ...prevState,
           [value]: value + " can't be empty.",
         }));
+        setRequiredStatus("* Required field can't be empty.");
       }
     }
 
@@ -116,6 +118,7 @@ const Create = ({ navigation }) => {
         [field]: false,
       }));
     }
+    setRequiredStatus("");
   };
 
   // console.log("and name is : " + inputs.name);
@@ -142,7 +145,7 @@ const Create = ({ navigation }) => {
             onCancel={hideDatePicker}
           />
           <InputItem
-            label="Invoice No"
+            label="Invoice No *"
             placeholder="6"
             placeholderTextColor="#80808040"
             keyboardType="numeric"
@@ -152,7 +155,7 @@ const Create = ({ navigation }) => {
             error={error.Invoice}
           />
           <InputItem
-            label="Name"
+            label="Name *"
             placeholder="Arafat hossain"
             placeholderTextColor="#80808040"
             onChangeText={(text) => {
@@ -173,7 +176,7 @@ const Create = ({ navigation }) => {
             onChangeText={(text) => setEmail(text)}
           />
           <InputItem
-            label="Mobile"
+            label="Mobile *"
             keyboardType="numeric"
             placeholder="0177776666555"
             placeholderTextColor="#80808040"
@@ -183,7 +186,7 @@ const Create = ({ navigation }) => {
             error={error.Mobile}
           />
           <InputItem
-            label="QTY"
+            label="QTY *"
             placeholder="3"
             placeholderTextColor="#80808040"
             keyboardType="numeric"
@@ -276,6 +279,10 @@ const Create = ({ navigation }) => {
             keyboardType="numeric"
             onChangeText={(text) => setDepositToAccount(text)}
           />
+
+          <Text style={{ marginTop: 7, color: "#ff0000", fontSize: 12 }}>
+            {requiredStatus}
+          </Text>
           <Btn title="Create" onPress={createInvoice} />
         </View>
       </ScrollView>

@@ -30,13 +30,15 @@ const Update = ({ navigation, route }) => {
   const [other, setOther] = useState(0);
   const [depositToAccount, setDepositToAccount] = useState(0);
 
+  // making all false to accept if don't change anything.
   const [error, setError] = useState({
-    Invoice: true,
-    Name: true,
-    Mobile: true,
-    QTY: true,
+    Invoice: false,
+    Name: false,
+    Mobile: false,
+    QTY: false,
   });
   let requiredFlag = true;
+  const [requiredStatus, setRequiredStatus] = useState("");
 
   // Date picker
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -101,6 +103,7 @@ const Update = ({ navigation, route }) => {
           ...prevState,
           [value]: value + " can't be empty.",
         }));
+        setRequiredStatus("* Required field can't be empty.");
       }
     }
 
@@ -154,6 +157,8 @@ const Update = ({ navigation, route }) => {
         [field]: false,
       }));
     }
+
+    setRequiredStatus("");
   };
 
   // console.log("and name is : " + inputs.name);
@@ -177,7 +182,7 @@ const Update = ({ navigation, route }) => {
             onCancel={hideDatePicker}
           />
           <InputItem
-            label="Invoice No"
+            label="Invoice No *"
             value={invoiceNo}
             keyboardType="numeric"
             onChangeText={(text) => {
@@ -186,7 +191,7 @@ const Update = ({ navigation, route }) => {
             error={error.Invoice}
           />
           <InputItem
-            label="Name"
+            label="Name *"
             value={name}
             onChangeText={(text) => {
               setName(text), handleError(text, "Name");
@@ -204,7 +209,7 @@ const Update = ({ navigation, route }) => {
             onChangeText={(text) => setEmail(text)}
           />
           <InputItem
-            label="Mobile"
+            label="Mobile *"
             keyboardType="numeric"
             value={mobile}
             onChangeText={(text) => {
@@ -213,7 +218,7 @@ const Update = ({ navigation, route }) => {
             error={error.Mobile}
           />
           <InputItem
-            label="QTY"
+            label="QTY *"
             value={qty}
             keyboardType="numeric"
             onChangeText={(text) => {
@@ -292,6 +297,9 @@ const Update = ({ navigation, route }) => {
             keyboardType="numeric"
             onChangeText={(text) => setDepositToAccount(text)}
           />
+          <Text style={{ marginTop: 7, color: "#ff0000", fontSize: 12 }}>
+            {requiredStatus}
+          </Text>
           <Btn title="Update" onPress={updateInvoice} />
         </View>
       </ScrollView>
