@@ -2,7 +2,7 @@
   "expo": {
     "name": "Order",
     "slug": "Order",
-    "version": "1.0.4", 
+    "version": "1.0.5", 
     "orientation": "portrait",
     "icon": "./assets/icon3.png",
     "userInterfaceStyle": "automatic",
@@ -26,7 +26,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.arafat6462.Order",
-      "versionCode":2
+      "versionCode":5
     },
     "web": {},
     "extra": {

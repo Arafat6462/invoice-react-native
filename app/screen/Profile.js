@@ -3,7 +3,7 @@ import { Text, StyleSheet, SafeAreaView } from "react-native";
 const Profile = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>version 1.0.4</Text>
+      <Text style={styles.text}>version 1.0.5</Text>
     </SafeAreaView>
   );
 };
