@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
-const InputField = ({ label, onFocus = () => {}, ...props }) => {
+const InputField = ({ label, error, onFocus = () => {}, ...props }) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <View style={{ marginBottom: 20 }}>
@@ -28,6 +28,9 @@ const InputField = ({ label, onFocus = () => {}, ...props }) => {
           {...props}
         />
       </View>
+      <Text style={{ marginTop: 7, color: "#ff0000", fontSize: 12 }}>
+        {error}
+      </Text>
     </View>
   );
 };

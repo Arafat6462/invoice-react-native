@@ -30,6 +30,14 @@ const Update = ({ navigation, route }) => {
   const [other, setOther] = useState(0);
   const [depositToAccount, setDepositToAccount] = useState(0);
 
+  const [error, setError] = useState({
+    Invoice: true,
+    Name: true,
+    Mobile: true,
+    QTY: true,
+  });
+  let requiredFlag = true;
+
   // Date picker
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -84,39 +92,68 @@ const Update = ({ navigation, route }) => {
 
   // Add a new document in collection "invoice"
   const updateInvoice = async () => {
-    updateDoc(doc(db, "invoice", id), {
-      date: date,
-      invoice_no: invoiceNo,
-      name: name,
-      address: address,
-      email: email,
-      mobile: mobile,
-      qty: qty,
-      product: product,
-      product_price: productPrice,
-      advance: advance,
-      update: orderUpdate,
-      delivery_charge: deliveryCharge,
-      delivery_company: deliveryCompany,
-      remark: remark,
-      first_followup: first_followup,
-      second_followup: second_followup,
-      third_followup: third_followup,
-      bkash_cost: bkashCost,
-      other: other,
-      deposit_to_account: depositToAccount,
-    })
-      .then(() => {
-        //Data save Successfully
-        console.log("data submitted");
-      })
-      .catch((error) => {
-        //Failed
-        console.log(error);
-      });
+    // check all required input field.
+    for (let value in error) {
+      console.log(error[value]);
+      if (error[value]) {
+        requiredFlag = false;
+        setError((prevState) => ({
+          ...prevState,
+          [value]: value + " can't be empty.",
+        }));
+      }
+    }
 
-    // back to show Invoice
-    navigation.navigate("Show Item");
+    if (requiredFlag) {
+      updateDoc(doc(db, "invoice", id), {
+        date: date,
+        invoice_no: invoiceNo,
+        name: name,
+        address: address,
+        email: email,
+        mobile: mobile,
+        qty: qty,
+        product: product,
+        product_price: productPrice,
+        advance: advance,
+        update: orderUpdate,
+        delivery_charge: deliveryCharge,
+        delivery_company: deliveryCompany,
+        remark: remark,
+        first_followup: first_followup,
+        second_followup: second_followup,
+        third_followup: third_followup,
+        bkash_cost: bkashCost,
+        other: other,
+        deposit_to_account: depositToAccount,
+      })
+        .then(() => {
+          //Data save Successfully
+          console.log("data submitted");
+        })
+        .catch((error) => {
+          //Failed
+          console.log(error);
+        });
+
+      // back to show Invoice
+      navigation.navigate("Show Item");
+    }
+  };
+
+  // required input field check
+  const handleError = (inputText, field) => {
+    if (inputText == "") {
+      setError((prevState) => ({
+        ...prevState,
+        [field]: field + " can't be empty.",
+      }));
+    } else {
+      setError((prevState) => ({
+        ...prevState,
+        [field]: false,
+      }));
+    }
   };
 
   // console.log("and name is : " + inputs.name);
@@ -143,12 +180,18 @@ const Update = ({ navigation, route }) => {
             label="Invoice No"
             value={invoiceNo}
             keyboardType="numeric"
-            onChangeText={(text) => setInvoiceNo(text)}
+            onChangeText={(text) => {
+              setInvoiceNo(text), handleError(text, "Invoice");
+            }}
+            error={error.Invoice}
           />
           <InputItem
             label="Name"
             value={name}
-            onChangeText={(text) => setName(text)}
+            onChangeText={(text) => {
+              setName(text), handleError(text, "Name");
+            }}
+            error={error.Name}
           />
           <InputItem
             label="Address"
@@ -164,13 +207,19 @@ const Update = ({ navigation, route }) => {
             label="Mobile"
             keyboardType="numeric"
             value={mobile}
-            onChangeText={(text) => setMobile(text)}
+            onChangeText={(text) => {
+              setMobile(text), handleError(text, "Mobile");
+            }}
+            error={error.Mobile}
           />
           <InputItem
             label="QTY"
             value={qty}
             keyboardType="numeric"
-            onChangeText={(text) => setQty(text)}
+            onChangeText={(text) => {
+              setQty(text), handleError(text, "QTY");
+            }}
+            error={error.QTY}
           />
           <InputItem
             label="Product"
